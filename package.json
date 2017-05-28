@@ -1,0 +1,11 @@
+{
+  "name": "photoAnalysis",
+  "version": "0.1.0",
+  "main": "lib/index.js",
+  "repository": "https://www.github.com/WesleyDRobinson/photoAnalysis",
+  "author": "wesley",
+  "license": "MIT",
+  "dependencies": {
+    "superagent": "^3.5.2"
+  }
+}
