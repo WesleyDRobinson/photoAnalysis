@@ -4,7 +4,7 @@
   "main": "lib/index.js",
   "repository": "https://www.github.com/WesleyDRobinson/photoAnalysis",
   "author": "wesley",
-  "license": "MIT",
+  "license": "Apache License 2.0",
   "dependencies": {
     "superagent": "^3.5.2"
   }
