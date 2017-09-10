@@ -30,15 +30,14 @@ button.addEventListener('click', function (e) {
         let facePreview = document.getElementById('face-preview');
         facePreview.innerHTML = `<img src="${imageUri}" class="db" alt="submitted face preview, halle berry">`
         // append data to output container
-        data = annotations.body[0]
-        console.log(data)
+        data = annotations.body[0];
 
         faceDataOutput.innerHTML = `
             <main class="mw6 center">
               <article>
                   <div class="dtc v-top pl2">
-                    <h1 class="f6 f5-ns fw6 lh-title black mv0">Confidence:</h1>
-                    <h2 class="f6 fw4 mt2 mb2 black-60">${data.detectionConfidence}</h2>
+                    <h1 class="f6 f5-ns fw6 lh-title black mv0">Detection Confidence:</h1>
+                    <h2 class="f6 fw4 mt2 mb2 black-60">${parseFloat(data.detectionConfidence) * 100.00}%</h2>
                   </div>
                 </article>
               <article>
