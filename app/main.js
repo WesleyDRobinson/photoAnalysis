@@ -1,7 +1,9 @@
 const request = require('superagent');
-const button = document.getElementById('image-button');
+const fetchButton = document.getElementById('image-button');
 
-button.addEventListener('click', function (e) {
+fetchButton.addEventListener('click', fetchButtonHandler)
+
+function fetchButtonHandler(e) {
   e.preventDefault();
 
   let imageUriSubmission = document.getElementById('image-uri').value;
@@ -31,7 +33,6 @@ button.addEventListener('click', function (e) {
         facePreview.innerHTML = `<img src="${imageUri}" class="db" alt="submitted face preview, halle berry">`
         // append data to output container
         data = annotations.body[0];
-
         faceDataOutput.innerHTML = `
             <main class="mw6 center">
               <article>
@@ -48,7 +49,7 @@ button.addEventListener('click', function (e) {
               </article>
               <article>
                   <div class="dtc v-top pl2">
-                    <h1 class="f6 f5-ns fw6 lh-title black mv0">Sorry:</h1>
+                    <h1 class="f6 f5-ns fw6 lh-title black mv0">Sorrow:</h1>
                     <h2 class="f6 fw4 mt2 mb2 black-60">${data.sorrowLikelihood}</h2>
                   </div>
               </article>
@@ -77,8 +78,6 @@ button.addEventListener('click', function (e) {
                   </div>
               </article>           
             </main>`
-
       })
   }
-
-});
+}

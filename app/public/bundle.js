@@ -1,8 +1,10 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 const request = require('superagent');
-const button = document.getElementById('image-button');
+const fetchButton = document.getElementById('image-button');
 
-button.addEventListener('click', function (e) {
+fetchButton.addEventListener('click', fetchButtonHandler)
+
+function fetchButtonHandler(e) {
   e.preventDefault();
 
   let imageUriSubmission = document.getElementById('image-uri').value;
@@ -32,7 +34,6 @@ button.addEventListener('click', function (e) {
         facePreview.innerHTML = `<img src="${imageUri}" class="db" alt="submitted face preview, halle berry">`
         // append data to output container
         data = annotations.body[0];
-
         faceDataOutput.innerHTML = `
             <main class="mw6 center">
               <article>
@@ -49,7 +50,7 @@ button.addEventListener('click', function (e) {
               </article>
               <article>
                   <div class="dtc v-top pl2">
-                    <h1 class="f6 f5-ns fw6 lh-title black mv0">Sorry:</h1>
+                    <h1 class="f6 f5-ns fw6 lh-title black mv0">Sorrow:</h1>
                     <h2 class="f6 fw4 mt2 mb2 black-60">${data.sorrowLikelihood}</h2>
                   </div>
               </article>
@@ -78,11 +79,9 @@ button.addEventListener('click', function (e) {
                   </div>
               </article>           
             </main>`
-
       })
   }
-
-});
+}
 
 },{"superagent":3}],2:[function(require,module,exports){
 
@@ -267,7 +266,6 @@ if (typeof window !== 'undefined') { // Browser window
 var Emitter = require('component-emitter');
 var RequestBase = require('./request-base');
 var isObject = require('./is-object');
-var isFunction = require('./is-function');
 var ResponseBase = require('./response-base');
 var shouldRetry = require('./should-retry');
 
@@ -312,7 +310,7 @@ request.getXHR = function () {
     try { return new ActiveXObject('Msxml2.XMLHTTP.3.0'); } catch(e) {}
     try { return new ActiveXObject('Msxml2.XMLHTTP'); } catch(e) {}
   }
-  throw Error("Browser-only verison of superagent could not find XHR");
+  throw Error("Browser-only version of superagent could not find XHR");
 };
 
 /**
@@ -422,7 +420,7 @@ request.parseString = parseString;
 request.types = {
   html: 'text/html',
   json: 'application/json',
-  xml: 'application/xml',
+  xml: 'text/xml',
   urlencoded: 'application/x-www-form-urlencoded',
   'form': 'application/x-www-form-urlencoded',
   'form-data': 'application/x-www-form-urlencoded'
@@ -778,10 +776,10 @@ Request.prototype.auth = function(user, pass, options){
       this.username = user;
       this.password = pass;
     break;
-      
+
     case 'bearer': // usage would be .auth(accessToken, { type: 'bearer' })
       this.set('Authorization', 'Bearer ' + user);
-    break;  
+    break;
   }
   return this;
 };
@@ -896,32 +894,6 @@ Request.prototype.pipe = Request.prototype.write = function(){
 };
 
 /**
- * Compose querystring to append to req.url
- *
- * @api private
- */
-
-Request.prototype._appendQueryString = function(){
-  var query = this._query.join('&');
-  if (query) {
-    this.url += (this.url.indexOf('?') >= 0 ? '&' : '?') + query;
-  }
-
-  if (this._sort) {
-    var index = this.url.indexOf('?');
-    if (index >= 0) {
-      var queryArr = this.url.substring(index + 1).split('&');
-      if (isFunction(this._sort)) {
-        queryArr.sort(this._sort);
-      } else {
-        queryArr.sort();
-      }
-      this.url = this.url.substring(0, index) + '?' + queryArr.join('&');
-    }
-  }
-};
-
-/**
  * Check if `obj` is a host object,
  * we don't want to serialize these :)
  *
@@ -953,7 +925,7 @@ Request.prototype.end = function(fn){
   this._callback = fn || noop;
 
   // querystring
-  this._appendQueryString();
+  this._finalizeQueryString();
 
   return this._end();
 };
@@ -1086,7 +1058,7 @@ request.get = function(url, data, fn){
 request.head = function(url, data, fn){
   var req = request('HEAD', url);
   if ('function' == typeof data) fn = data, data = null;
-  if (data) req.send(data);
+  if (data) req.query(data);
   if (fn) req.end(fn);
   return req;
 };
@@ -1184,24 +1156,7 @@ request.put = function(url, data, fn){
   return req;
 };
 
-},{"./is-function":4,"./is-object":5,"./request-base":6,"./response-base":7,"./should-retry":8,"component-emitter":2}],4:[function(require,module,exports){
-/**
- * Check if `fn` is a function.
- *
- * @param {Function} fn
- * @return {Boolean}
- * @api private
- */
-var isObject = require('./is-object');
-
-function isFunction(fn) {
-  var tag = isObject(fn) ? Object.prototype.toString.call(fn) : '';
-  return tag === '[object Function]';
-}
-
-module.exports = isFunction;
-
-},{"./is-object":5}],5:[function(require,module,exports){
+},{"./is-object":4,"./request-base":5,"./response-base":6,"./should-retry":7,"component-emitter":2}],4:[function(require,module,exports){
 /**
  * Check if `obj` is an object.
  *
@@ -1216,7 +1171,7 @@ function isObject(obj) {
 
 module.exports = isObject;
 
-},{}],6:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 /**
  * Module of mixed-in functions shared between node and client code
  */
@@ -1327,7 +1282,7 @@ RequestBase.prototype.serialize = function serialize(fn){
  *
  * Value of 0 or false means no timeout.
  *
- * @param {Number|Object} ms or {response, read, deadline}
+ * @param {Number|Object} ms or {response, deadline}
  * @return {Request} for chaining
  * @api public
  */
@@ -1774,6 +1729,35 @@ RequestBase.prototype.sortQuery = function(sort) {
 };
 
 /**
+ * Compose querystring to append to req.url
+ *
+ * @api private
+ */
+RequestBase.prototype._finalizeQueryString = function(){
+  var query = this._query.join('&');
+  if (query) {
+    this.url += (this.url.indexOf('?') >= 0 ? '&' : '?') + query;
+  }
+  this._query.length = 0; // Makes the call idempotent
+
+  if (this._sort) {
+    var index = this.url.indexOf('?');
+    if (index >= 0) {
+      var queryArr = this.url.substring(index + 1).split('&');
+      if ('function' === typeof this._sort) {
+        queryArr.sort(this._sort);
+      } else {
+        queryArr.sort();
+      }
+      this.url = this.url.substring(0, index) + '?' + queryArr.join('&');
+    }
+  }
+};
+
+// For backwards compat only
+RequestBase.prototype._appendQueryString = function() {console.trace("Unsupported");}
+
+/**
  * Invoke callback with timeout error.
  *
  * @api private
@@ -1809,7 +1793,7 @@ RequestBase.prototype._setTimeouts = function() {
   }
 }
 
-},{"./is-object":5}],7:[function(require,module,exports){
+},{"./is-object":4}],6:[function(require,module,exports){
 
 /**
  * Module dependencies.
@@ -1944,7 +1928,7 @@ ResponseBase.prototype._setStatusProperties = function(status){
     this.notFound = 404 == status;
 };
 
-},{"./utils":9}],8:[function(require,module,exports){
+},{"./utils":8}],7:[function(require,module,exports){
 var ERROR_CODES = [
   'ECONNRESET',
   'ETIMEDOUT',
@@ -1969,7 +1953,7 @@ module.exports = function shouldRetry(err, res) {
   return false;
 };
 
-},{}],9:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 
 /**
  * Return the mime type for the given `str`.
