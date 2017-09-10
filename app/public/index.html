@@ -10,45 +10,38 @@
 </head>
 <body>
 <div id="app">
-    <div class="flex items-center justify-center pa4 bg-lightest-blue navy">
-        <svg class="w1" data-icon="info" viewBox="0 0 32 32" style="fill:currentcolor">
-            <title>info icon</title>
-            <path d="M16 0 A16 16 0 0 1 16 32 A16 16 0 0 1 16 0 M19 15 L13 15 L13 26 L19 26 z M16 6 A3 3 0 0 0 16 12 A3 3 0 0 0 16 6"></path>
-        </svg>
-        <span class="lh-title ml3">Wesley's Face Detector</span>
-    </div>
-    <div class="pa4-l">
-        <form class="bg-light-red mw7 center pa4 br2-ns ba b--black-10">
-            <fieldset class="cf bn ma0 pa0">
-                <legend class="pa0 f5 f4-ns mb3 black-80">Get Image Data from a URI</legend>
-                <div class="cf">
-                    <label class="clip" for="image-uri">Image URI</label>
-                    <input class="f6 f5-l input-reset bn fl black-80 bg-white pa3 lh-solid w-100 w-75-m w-80-l br2-ns br--left-ns"
-                           placeholder="Image URI" type="text" name="image-uri" value="http://www.vallartatoday.com/images/10232014/olivia-pulsinelli-krang2013-white-background.jpg" id="image-uri">
-                    <input id="image-submit"
-                           class="f6 f5-l button-reset fl pv3 tc bn bg-animate bg-black-70 hover-bg-black white pointer w-100 w-25-m w-20-l br2-ns br--right-ns"
-                           type="submit" value="Get Face Data">
+    <section class="ph3 ph5-ns pv5">
+        <article class="mw8 center br2 ba b--light-blue bg-lightest-blue">
+            <div class="dt-ns dt--fixed-ns w-100">
+                <div class="pa3 pa4-ns dtc-ns v-mid">
+                    <div>
+                        <h2 class="fw4 blue mt0 mb3">get facial sentiment data from an image URI</h2>
+                        <label class="clip" for="image-uri">Image URI</label>
+                        <input class="black-70 measure lh-copy mv0 w-100"
+                           placeholder="Image URI" type="text" name="image-uri"
+                           value="https://www.biography.com/.image/t_share/MTE1ODA0OTcxODYxNjQwNzE3/halle-berry-9542339-1-402.jpg"
+                           id="image-uri">
+                        </input>
+                    </div>
                 </div>
-            </fieldset>
-        </form>
-    </div>
-    <div>
-        <div id="face-data-output" class="f4 bold center mw5">
+                <div class="pa3 pa4-ns dtc-ns v-mid">
+                    <a id="image-button" href="#" class="no-underline f6 tc db w-100 pv3 bg-animate bg-blue hover-bg-dark-blue white br2">fetch data</a>
+                </div>
+            </div>
+        </article>
+    </section>
 
+    <div class="mw5 mw8-ns center bg-light-red pa3 ph4-ns">
+        <div class="db pv4 ph3 ph0-l" href="#0">
+            <div class="flex flex-column flex-row-ns">
+                <div id="face-preview" class="mb4 mb0-ns w-100 w-40-ns"></div>
+                <div id="face-data-output" class="w-100 w-60-ns pl3-ns"></div>
+            </div>
         </div>
-        <h1 class="f4 bold center mw5">Emotions</h1>
-        <ul class="list pl0 measure center">
-            <li id="joyLikelihood" class="lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30">joy</li>
-            <li id="sorrowLikelihood" class="lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30">sorrow</li>
-            <li id="angerLikelihood" class="lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30">anger</li>
-            <li id="surpriseLikelihood" class="lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30">surprise</li>
-            <li id="underExposedLikelihood" class="lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30">underExposed
-            </li>
-            <li id="blurredLikelihood" class="lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30">blurred</li>
-            <li id="headwearLikelihood" class="lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30">headwear</li>
-        </ul>
     </div>
+
 </div>
+
 <script src="bundle.js"></script>
 </body>
 </html>
