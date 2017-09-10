@@ -4,42 +4,36 @@
     <meta charset="UTF-8">
     <title>photoVision App</title>
     <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
-    <style>
-
-    </style>
 </head>
 <body>
 <div id="app">
-    <section class="ph3 ph5-ns pv5">
+    <section class="ph3 ph-ns pv4">
         <article class="mw8 center br2 ba b--light-blue bg-lightest-blue">
             <div class="dt-ns dt--fixed-ns w-100">
                 <div class="pa3 pa4-ns dtc-ns v-mid">
-                    <div>
-                        <h2 class="fw4 blue mt0 mb3">get facial sentiment data from an image URI</h2>
-                        <label class="clip" for="image-uri">Image URI</label>
-                        <input class="black-70 measure lh-copy mv0 w-100"
+                    <h2 class="fw4 blue mt0 mb3">get facial sentiment data from an image URI</h2>
+                    <label class="clip" for="image-uri">Image URI</label>
+                    <input class="black-70 measure lh-copy mv0 w-100"
                            placeholder="Image URI" type="text" name="image-uri"
                            value="https://www.biography.com/.image/t_share/MTE1ODA0OTcxODYxNjQwNzE3/halle-berry-9542339-1-402.jpg"
-                           id="image-uri">
-                        </input>
-                    </div>
+                           id="image-uri"/>
                 </div>
                 <div class="pa3 pa4-ns dtc-ns v-mid">
-                    <a id="image-button" href="#" class="no-underline f6 tc db w-100 pv3 bg-animate bg-blue hover-bg-dark-blue white br2">fetch data</a>
+                    <a id="image-button" href="#"
+                       class="no-underline f6 tc db w-100 pv3 bg-animate bg-blue hover-bg-dark-blue white br2">fetch
+                        data</a>
                 </div>
             </div>
         </article>
     </section>
-
-    <div class="mw5 mw8-ns center bg-light-red pa3 ph4-ns">
-        <div class="db pv4 ph3 ph0-l" href="#0">
-            <div class="flex flex-column flex-row-ns">
-                <div id="face-preview" class="mb4 mb0-ns w-100 w-40-ns"></div>
-                <div id="face-data-output" class="w-100 w-60-ns pl3-ns"></div>
+    <section class="ph3 ph-ns pv4">
+        <article class="mw8 center br2 ba b--light-green bg-washed-green">
+            <div class="dt-ns dt--fixed-ns w-100">
+                <div id="face-preview" class="pa3 pa4-ns dtc-ns v-mid"></div>
+                <div id="face-data-output" class="pa3 pa4-ns dtc-ns v-mid"></div>
             </div>
-        </div>
-    </div>
-
+        </article>
+    </section>
 </div>
 
 <script src="bundle.js"></script>
