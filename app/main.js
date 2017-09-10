@@ -1,7 +1,7 @@
 const request = require('superagent');
-const submit = document.getElementById('image-submit');
+const button = document.getElementById('image-button');
 
-submit.addEventListener('click', function (e) {
+button.addEventListener('click', function (e) {
   e.preventDefault();
 
   let imageUriSubmission = document.getElementById('image-uri').value;
@@ -22,24 +22,63 @@ submit.addEventListener('click', function (e) {
     // make requests
     request
       .get('/api/fetchFaceData/')
-      .query({ imageUri: imageUri})
+      .query({imageUri: imageUri})
       .end(function (err, annotations) {
         if (err) return console.error('could not fetch faceData', err);
 
+        // face preview
+        let facePreview = document.getElementById('face-preview');
+        facePreview.innerHTML = `<img src="${imageUri}" class="db" alt="submitted face preview, halle berry">`
         // append data to output container
         data = annotations.body[0]
         console.log(data)
+
         faceDataOutput.innerHTML = `
-    <pre class="code">
-          "detectionConfidence": ${data.detectionConfidence},
-          "joyLikelihood": "${data.joyLikelihood}",
-          "sorrowLikelihood": "${data.sorrowLikelihood}",
-          "angerLikelihood": "${data.angerLikelihood}",
-          "surpriseLikelihood": "${data.surpriseLikelihood}",
-          "blurredLikelihood": "${data.blurredLikelihood}",
-          "headwearLikelihood": "${data.headwearLikelihood}"
-    </pre>
-`
+            <main class="mw6 center">
+              <article>
+                  <div class="dtc v-top pl2">
+                    <h1 class="f6 f5-ns fw6 lh-title black mv0">Confidence:</h1>
+                    <h2 class="f6 fw4 mt2 mb2 black-60">${data.detectionConfidence}</h2>
+                  </div>
+                </article>
+              <article>
+                  <div class="dtc v-top pl2">
+                    <h1 class="f6 f5-ns fw6 lh-title black mv0">Joy:</h1>
+                    <h2 class="f6 fw4 mt2 mb2 black-60">${data.joyLikelihood}</h2>
+                  </div>
+              </article>
+              <article>
+                  <div class="dtc v-top pl2">
+                    <h1 class="f6 f5-ns fw6 lh-title black mv0">Sorry:</h1>
+                    <h2 class="f6 fw4 mt2 mb2 black-60">${data.sorrowLikelihood}</h2>
+                  </div>
+              </article>
+              <article>
+                  <div class="dtc v-top pl2">
+                    <h1 class="f6 f5-ns fw6 lh-title black mv0">Anger:</h1>
+                    <h2 class="f6 fw4 mt2 mb2 black-60">${data.angerLikelihood}</h2>
+                  </div>
+              </article>
+              <article>
+                  <div class="dtc v-top pl2">
+                    <h1 class="f6 f5-ns fw6 lh-title black mv0">Surprise:</h1>
+                    <h2 class="f6 fw4 mt2 mb2 black-60">${data.surpriseLikelihood}</h2>
+                  </div>
+              </article>
+              <article>
+                  <div class="dtc v-top pl2">
+                    <h1 class="f6 f5-ns fw6 lh-title black mv0">Blurry Image:</h1>
+                    <h2 class="f6 fw4 mt2 mb2 black-60">${data.blurredLikelihood}</h2>
+                  </div>
+              </article>
+              <article>
+                  <div class="dtc v-top pl2">
+                    <h1 class="f6 f5-ns fw6 lh-title black mv0">Headwear:</h1>
+                    <h2 class="f6 fw4 mt2 mb2 black-60">${data.headwearLikelihood}</h2>
+                  </div>
+              </article>           
+            </main>`
+
       })
   }
 
