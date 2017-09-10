@@ -22,6 +22,7 @@ function getFaceAnnotation(url) {
   });
 }
 
+//exporting a function
 module.exports = getFaceAnnotation;
 
 // basic example:
