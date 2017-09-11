@@ -1,0 +1,18 @@
+{
+    "name": "photo analysis",
+    "icons": [
+        {
+            "src": "/favicons/android-chrome-192x192.png?v=Omyr4xGAPn",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/favicons/android-chrome-384x384.png?v=Omyr4xGAPn",
+            "sizes": "384x384",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#ceedfe",
+    "background_color": "#ceedfe",
+    "display": "standalone"
+}
