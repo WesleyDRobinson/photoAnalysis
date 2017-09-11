@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
 
-const faceLib = path.join(__dirname) + '/lib';
+const faceLib = path.join(__dirname) + '/..';
 const getFaceAnnotation = require(faceLib);
 
 const publicDir = path.join(__dirname + '/public');

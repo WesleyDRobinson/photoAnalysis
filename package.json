@@ -1,11 +1,33 @@
 {
-  "name": "photoAnalysis",
-  "version": "0.1.0",
-  "main": "lib/index.js",
-  "repository": "https://www.github.com/WesleyDRobinson/photoAnalysis",
-  "author": "wesley",
+  "name": "photoAnalysis-app",
+  "version": "0.3.0",
+  "description": "use Google Cloud Vision API to find sentiment of a face in an image URI",
+  "keywords": [
+    "AI",
+    "upload",
+    "sentiment",
+    "analysis"
+  ],
   "license": "Apache License 2.0",
+  "author": {
+    "name": "wesley",
+    "email": "robinson.wesleyd@gmail.com",
+    "url": "https://www.wesley.tech/"
+  },
+  "main": "index.js",
+  "scripts": {
+    "deploy": "now -e GOOGLE_VISION_DEV --public",
+    "build": "browserify app/main.js -o app/public/bundle.js -v",
+    "start": "node app/server.js",
+    "dev": "watchify app/main.js -o app/public/bundle.js -v"
+  },
+  "devDependencies": {
+    "browserify": "^14.4.0",
+    "watchify": "^3.9.0"
+  },
   "dependencies": {
-    "superagent": "^3.5.2"
+    "body-parser": "^1.18.0",
+    "express": "^4.15.4",
+    "superagent": "^3.6.0"
   }
 }
