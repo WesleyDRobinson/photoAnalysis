@@ -1,39 +1,72 @@
-const request = require('superagent');
-const fetchButton = document.getElementById('image-button');
+const request = require('superagent')
+const faceFetchButton = document.getElementById('image-button-face')
+const textFetchButton = document.getElementById('image-button-text')
 
-fetchButton.addEventListener('click', fetchButtonHandler)
+faceFetchButton.addEventListener('click', faceButtonHandler)
+textFetchButton.addEventListener('click', textButtonHandler)
 
-function fetchButtonHandler(e) {
-  e.preventDefault();
+function textButtonHandler(e) {
+    e.preventDefault()
 
-  let imageUriSubmission = document.getElementById('image-uri').value;
-  if ((typeof imageUriSubmission !== 'string') || (imageUriSubmission.slice(0, 4) !== 'http')) {
-    return alert('must enter a web uri (beginning with `http` of an image');
-  }
+    // grab submission
+    let imageUriSubmission = document.getElementById('image-uri').value
 
-  // grab output container
-  let faceDataOutput = document.getElementById('face-data-output');
-  // add loading info
-  faceDataOutput.innerText = 'fetching data!';
+    // check for image
+    if ((typeof imageUriSubmission !== 'string') || (imageUriSubmission.slice(0, 4) !== 'http')) {
+        return alert('must enter a web uri (beginning with `http` of an image')
+    }
 
-  fetchData(imageUriSubmission);
+    // add image preview and loading notice
+    let imagePreview = document.getElementById('image-preview')
+    imagePreview.innerHTML = `<img src="${imageUriSubmission}" class="db" alt="submitted image preview">`
+    let faceDataOutput = document.getElementById('image-data')
+    faceDataOutput.innerHTML = `<p>fetching data!</p>`
 
-  // for testing use content/response.json
-  // use for production
-  function fetchData(imageUri) {
-    // make requests
-    request
-      .get('/api/fetchFaceData/')
-      .query({imageUri: imageUri})
-      .end(function (err, annotations) {
-        if (err) return console.error('could not fetch faceData', err);
+    fetchData(imageUriSubmission)
 
-        // face preview
-        let facePreview = document.getElementById('face-preview');
-        facePreview.innerHTML = `<img src="${imageUri}" class="db" alt="submitted face preview, halle berry">`
-        // append data to output container
-        data = annotations.body[0];
-        faceDataOutput.innerHTML = `
+    function fetchData(imageUri) {
+        request
+            .get('/api/fetchTextData/')
+            .query({imageUri})
+            .end((err, annotations) => {
+                if (err) return console.error('could not fetch textData', err)
+
+                data = annotations.body[0]
+
+                // todo -- disentangle from fetchData
+                faceDataOutput.innerHTML = data.fullTextAnnotation ? `<p>${data.fullTextAnnotation.text}</p>` : `<p>no text detected 😶😢</p>`
+            })
+    }
+}
+
+function faceButtonHandler(e) {
+    e.preventDefault()
+    let imageUriSubmission = document.getElementById('image-uri').value
+    if ((typeof imageUriSubmission !== 'string') || (imageUriSubmission.slice(0, 4) !== 'http')) {
+        return alert('must enter a web uri (beginning with `http` of an image')
+    }
+
+    // add image preview and loading notice
+    let imagePreview = document.getElementById('image-preview')
+    imagePreview.innerHTML = `<img src="${imageUriSubmission}" class="db" alt="submitted image preview">`
+    let faceDataOutput = document.getElementById('image-data')
+    faceDataOutput.innerHTML = `<p>fetching data!</p>`
+
+    fetchData(imageUriSubmission)
+
+    function fetchData(imageUri) {
+        // make requests
+        request
+            .get('/api/fetchFaceData/')
+            .query({imageUri})
+            .end((err, annotations) => {
+                if (err) return console.error('could not fetch faceData', err)
+                if (annotations.body === null) return faceDataOutput.innerHTML = `<p>no faces detected 😶😢</p>`
+
+                data = annotations.body[0]
+
+                // todo -- disentangle from fetchData
+                faceDataOutput.innerHTML = `
             <main class="mw6 center">
               <article>
                   <div class="dtc v-top pl2">
@@ -78,6 +111,7 @@ function fetchButtonHandler(e) {
                   </div>
               </article>           
             </main>`
-      })
-  }
+
+            })
+    }
 }

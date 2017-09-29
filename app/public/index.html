@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <title>photoVision App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<<<<<<< HEAD
-
     <link rel="apple-touch-icon" sizes="180x180" href="./favicons/apple-touch-icon.png?v=Omyr4xGAPn">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicons/favicon-32x32.png?v=Omyr4xGAPn">
     <link rel="icon" type="image/png" sizes="16x16" href="./favicons/favicon-16x16.png?v=Omyr4xGAPn">
@@ -15,8 +13,6 @@
     <meta name="msapplication-config" content="/favicons/browserconfig.xml?v=Omyr4xGAPn">
     <meta name="theme-color" content="#ceedfe">
 
-=======
->>>>>>> d8bc40c8905e93a18d9c79ebdd2b84c4549aa89f
     <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
 </head>
 <body>
@@ -25,7 +21,7 @@
         <article class="mw8 center br2 ba b--light-blue bg-lightest-blue">
             <div class="dt-ns dt--fixed-ns w-100">
                 <div class="pa3 pa4-ns dtc-ns v-mid">
-                    <h2 class="fw4 blue mt0 mb3">get facial sentiment data from an image URI</h2>
+                    <h2 class="fw4 blue mt0 mb3">text or facial sentiment data from an image URI</h2>
                     <label class="clip" for="image-uri">Image URI</label>
                     <input class="black-70 measure lh-copy mv0 w-100"
                            placeholder="Image URI" type="text" name="image-uri"
@@ -33,9 +29,14 @@
                            id="image-uri"/>
                 </div>
                 <div class="pa3 pa4-ns dtc-ns v-mid">
-                    <a id="image-button" href="#"
-                       class="no-underline f6 tc db w-100 pv3 bg-animate bg-blue hover-bg-dark-blue white br2">fetch
-                        data</a>
+                    <a id="image-button-face" href="#"
+                       class="no-underline f6 tc db w-100 pv3 bg-animate bg-blue hover-bg-dark-blue white br2">
+                        face data
+                    </a>
+                    <a id="image-button-text" href="#"
+                       class="no-underline f6 tc db w-100 pv3 bg-animate bg-blue hover-bg-dark-blue white br2">
+                        text data
+                    </a>
                 </div>
             </div>
         </article>
@@ -43,8 +44,8 @@
     <section class="ph3 ph4-ns pv4">
         <article class="mw8 center br2 ba b--light-green bg-washed-green">
             <div class="dt-ns dt--fixed-ns w-100">
-                <div id="face-preview" class="pa3 pa4-ns dtc-ns v-mid"></div>
-                <div id="face-data-output" class="pa3 pa4-ns dtc-ns v-mid"></div>
+                <div id="image-preview" class="pa3 pa4-ns dtc-ns v-mid"></div>
+                <div id="image-data" class="pa3 pa4-ns dtc-ns v-mid"></div>
             </div>
         </article>
     </section>

@@ -8,15 +8,19 @@
     "sentiment",
     "analysis"
   ],
-  "license": "Apache License 2.0",
+  "license": "Apache-2.0",
   "author": {
     "name": "wesley",
     "email": "robinson.wesleyd@gmail.com",
     "url": "https://www.wesley.tech/"
   },
   "main": "index.js",
+  "now": {
+    "alias": "photos.wesley.tech",
+    "public": false
+  },
   "scripts": {
-    "deploy": "now -e GOOGLE_VISION_DEV --public",
+    "deploy": "now -e GOOGLE_VISION_DEV && now alias",
     "build": "browserify app/main.js -o app/public/bundle.js -v",
     "start": "node app/server.js",
     "dev": "watchify app/main.js -o app/public/bundle.js -v"
