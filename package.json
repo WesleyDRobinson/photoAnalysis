@@ -14,13 +14,13 @@
     "email": "robinson.wesleyd@gmail.com",
     "url": "https://www.wesley.tech/"
   },
-  "main": "index.js",
+  "main": "lib/index.js",
   "now": {
     "alias": "photos.wesley.tech",
     "public": false
   },
   "scripts": {
-    "deploy": "now -e GOOGLE_VISION_DEV && now alias",
+    "deploy": "now -e GOOGLE_VISION_DEV",
     "build": "browserify app/main.js -o app/public/bundle.js -v",
     "start": "node app/server.js",
     "dev": "watchify app/main.js -o app/public/bundle.js -v"
