@@ -26,6 +26,8 @@
     "dev": "watchify app/main.js -o app/public/bundle.js -v"
   },
   "devDependencies": {
+    "browser-sync": "^2.23.6",
+    "browser-sync-webpack-plugin": "^2.0.1",
     "browserify": "^14.4.0",
     "watchify": "^3.9.0"
   },
