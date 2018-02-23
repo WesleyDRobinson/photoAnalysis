@@ -20,14 +20,17 @@
     "public": false
   },
   "scripts": {
-    "deploy": "now -e GOOGLE_VISION_DEV",
-    "build": "browserify app/main.js -o app/public/bundle.js -v",
-    "start": "node app/server.js",
-    "dev": "watchify app/main.js -o app/public/bundle.js -v"
+    "build": "webpack app/src/index.js app/public/bundle.js",
+    "build:watch": "webpack -w -d app/src/index.js app/public/bundle.js",
+    "deploy": "npm run build && now -e GOOGLE_VISION_DEV",
+    "dev": "npm-run-all -p build:watch start",
+    "release": "now alias",
+    "start": "node app/server.js"
   },
   "devDependencies": {
-    "browserify": "^14.4.0",
-    "watchify": "^3.9.0"
+    "browser-sync-webpack-plugin": "^2.0.1",
+    "npm-run-all": "^4.1.2",
+    "webpack": "^3.10.0"
   },
   "dependencies": {
     "body-parser": "^1.18.0",
