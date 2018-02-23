@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>photoVision App</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" sizes="180x180" href="./favicons/apple-touch-icon.png?v=Omyr4xGAPn">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicons/favicon-32x32.png?v=Omyr4xGAPn">
@@ -13,46 +14,24 @@
     <meta name="msapplication-config" content="/favicons/browserconfig.xml?v=Omyr4xGAPn">
     <meta name="theme-color" content="#ceedfe">
 
-    <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
-</head>
-<body>
-<div id="app">
-    <section class="ph3 ph4-ns pv4">
-        <article class="mw8 center br2 ba b--light-blue bg-lightest-blue">
-            <div class="dt-ns dt--fixed-ns w-100">
-                <div class="pa3 pa4-ns dtc-ns v-mid">
-                    <h2 class="fw4 blue mt0 mb3">text or facial sentiment data from an image URI</h2>
-                    <label class="clip" for="image-uri">Image URI</label>
-                    <input class="black-70 measure lh-copy mv0 w-100"
-                           placeholder="Image URI" type="text" name="image-uri"
-                           value="https://www.biography.com/.image/t_share/MTE1ODA0OTcxODYxNjQwNzE3/halle-berry-9542339-1-402.jpg"
-                           id="image-uri"/>
-                </div>
-                <div class="pa3 pa4-ns dtc-ns v-mid">
-                    <a id="image-button-face" href="#"
-                       class="no-underline f6 tc db w-100 pv3 bg-animate bg-blue hover-bg-dark-blue white br2">
-                        face data
-                    </a>
-                </div>
-                <div class="pa3 pa4-ns dtc-ns v-mid">
-                    <a id="image-button-text" href="#"
-                       class="no-underline f6 tc db w-100 pv3 bg-animate bg-blue hover-bg-dark-blue white br2">
-                        text data
-                    </a>
-                </div>
-            </div>
-        </article>
-    </section>
-    <section class="ph3 ph4-ns pv4">
-        <article class="mw8 center br2 ba b--light-green bg-washed-green">
-            <div class="dt-ns dt--fixed-ns w-100">
-                <div id="image-preview" class="pa3 pa4-ns dtc-ns v-mid"></div>
-                <div id="image-data" class="pa3 pa4-ns dtc-ns v-mid"></div>
-            </div>
-        </article>
-    </section>
-</div>
+    <!-- CSS toolkits -->
+    <link href="https://unpkg.com/tachyons@4.9.0/css/tachyons.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
 
+    <!-- hyperHTML for building web components -->
+    <script src="//unpkg.com/hyperhtml-element@latest/min.js"></script>
+    <script>window.customElements || document.write('<script src="//cdnjs.cloudflare.com/ajax/libs/document-register-element/1.6.2/document-register-element.js"><' + '/script>')</script>
+
+    <noscript>
+        photoAnalysis requires JavaScript (JS) to analyze images.
+        <a href="https://brave.com/">Brave browser</a> is our recommended browser for a fast and secure internet.
+        Download it today!
+        Or follow these
+        <a href="https://www.enable-js.com/" target="_blank">instructions to enable JavaScript in your web browser</a>.
+    </noscript>
+</head>
+<body class="bg-light-blue">
+<app-shell></app-shell>
 <script src="bundle.js"></script>
 </body>
 </html>

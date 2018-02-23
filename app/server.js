@@ -1,12 +1,11 @@
-const express = require('express')
-const app = express()
+'use strict'
 const bodyParser = require('body-parser')
-const path = require('path')
+    , express = require('express')
+    , app = express()
+    , path = require('path')
+    , photo = require(path.join(__dirname + '/../lib'))
+    , publicDir = path.join(__dirname + '/public')
 
-const photoAnalysis = path.join(__dirname + '/../lib')
-const photo = require(photoAnalysis)
-
-const publicDir = path.join(__dirname + '/public')
 app.use(express.static(publicDir))
 
 app.use(bodyParser.json())
