@@ -1,14 +1,23 @@
-## photoAnalysis app
+## 📜🧐photo vision 🕵🗿
 
-October 2017!
-Can submit a face image to receive sentiment and headwear liklihood!
-Can submit an image with text in it to receive OCR!
+> http://photos.wesley.tech
 
-You'll need an image that ends with .png or .jpg, you know a URI.
+`lib` is the start of a lean JS library for Google's [Cloud Vision API](https://cloud.google.com/vision/) <br>
+`app/server.js` exposes an API and serves a website from `app/public` <br>
+The frontend is a single page app whose purpose is to provide a delightful user experience and API gate. Additionally, because Google charges per use, this service will require monetization in the future.
 
-Outputs are relatively "dumb" but they exist. If you find this tool useful, please let me know how I can make it better for you.
+### The path to 1.0
 
-site is live at:
-https://photos.wesley.tech
+includes features like:
+ * handling multi-face detection
+ * auth implementation
+ * clear site instructions/ documentation
+ * payments setup in advance of pay per use/ subscription service
 
-Built with https://cloud.google.com/vision/ 
+Stretch goals (2.0 and beyond):
+ * more thoughtful design and animations
+ * page routing in the app
+ * more feature detections
+ * user profiles
+ * payment system
+ * extract and open source standalone JS library

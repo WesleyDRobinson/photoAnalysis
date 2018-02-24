@@ -1,6 +1,6 @@
 {
   "name": "photoAnalysis-app",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "use Google Cloud Vision API to find sentiment of a face in an image URI",
   "keywords": [
     "AI",
