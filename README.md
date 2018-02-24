@@ -13,6 +13,7 @@ includes features like:
  * auth implementation
  * clear site instructions/ documentation
  * payments setup in advance of pay per use/ subscription service
+ * image file uploading and in-place capture
 
 Stretch goals (2.0 and beyond):
  * more thoughtful design and animations
